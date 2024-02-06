@@ -1,6 +1,10 @@
 package blockchain_toml
 
-type CosmosConfig struct {
+// ###################################################
+// ################### config.toml ###################
+// ###################################################
+
+type CosmosConfigFile struct {
 	ProxyApp               string                `toml:"proxy_app"`
 	Moniker                string                `toml:"moniker"`
 	BlockSync              bool                  `toml:"block_sync"`
@@ -127,4 +131,85 @@ type CosmosInstrumentation struct {
 	PrometheusListenAddr string `toml:"prometheus_listen_addr"`
 	MaxOpenConnections   int    `toml:"max_open_connections"`
 	Namespace            string `toml:"namespace"`
+}
+
+// ###################################################
+// #################### app.toml ####################
+// ###################################################
+
+type CosmosAppFile struct {
+	MinimumGasPrices    string        `toml:"minimum-gas-prices"`
+	Pruning             string        `toml:"pruning"`
+	PruningKeepRecent   string        `toml:"pruning-keep-recent"`
+	PruningKeepEvery    string        `toml:"pruning-keep-every"`
+	PruningInterval     string        `toml:"pruning-interval"`
+	HaltHeight          int           `toml:"halt-height"`
+	HaltTime            int           `toml:"halt-time"`
+	MinRetainBlocks     int           `toml:"min-retain-blocks"`
+	InterBlockCache     bool          `toml:"inter-block-cache"`
+	IndexEvents         []interface{} `toml:"index-events"`
+	IavlCacheSize       int           `toml:"iavl-cache-size"`
+	IavlDisableFastnode bool          `toml:"iavl-disable-fastnode"`
+	Telemetry           Telemetry     `toml:"telemetry"`
+	API                 API           `toml:"api"`
+	Rosetta             Rosetta       `toml:"rosetta"`
+	Grpc                Grpc          `toml:"grpc"`
+	GrpcWeb             GrpcWeb       `toml:"grpc-web"`
+	StateSync           StateSync     `toml:"state-sync"`
+	Store               Store         `toml:"store"`
+	Streamers           Streamers     `toml:"streamers"`
+}
+type Telemetry struct {
+	ServiceName             string        `toml:"service-name"`
+	Enabled                 bool          `toml:"enabled"`
+	EnableHostname          bool          `toml:"enable-hostname"`
+	EnableHostnameLabel     bool          `toml:"enable-hostname-label"`
+	EnableServiceLabel      bool          `toml:"enable-service-label"`
+	PrometheusRetentionTime int           `toml:"prometheus-retention-time"`
+	GlobalLabels            []interface{} `toml:"global-labels"`
+}
+type API struct {
+	Enable             bool   `toml:"enable"`
+	Swagger            bool   `toml:"swagger"`
+	Address            string `toml:"address"`
+	MaxOpenConnections int    `toml:"max-open-connections"`
+	RPCReadTimeout     int    `toml:"rpc-read-timeout"`
+	RPCWriteTimeout    int    `toml:"rpc-write-timeout"`
+	RPCMaxBodyBytes    int    `toml:"rpc-max-body-bytes"`
+	EnabledUnsafeCors  bool   `toml:"enabled-unsafe-cors"`
+}
+type Rosetta struct {
+	Enable     bool   `toml:"enable"`
+	Address    string `toml:"address"`
+	Blockchain string `toml:"blockchain"`
+	Network    string `toml:"network"`
+	Retries    int    `toml:"retries"`
+	Offline    bool   `toml:"offline"`
+}
+type Grpc struct {
+	Enable  bool   `toml:"enable"`
+	Address string `toml:"address"`
+}
+type GrpcWeb struct {
+	Enable           bool   `toml:"enable"`
+	Address          string `toml:"address"`
+	EnableUnsafeCors bool   `toml:"enable-unsafe-cors"`
+}
+type StateSync struct {
+	SnapshotInterval   int `toml:"snapshot-interval"`
+	SnapshotKeepRecent int `toml:"snapshot-keep-recent"`
+}
+type Store struct {
+	Streamers []interface{} `toml:"streamers"`
+}
+type File struct {
+	Keys            []string `toml:"keys"`
+	WriteDir        string   `toml:"write_dir"`
+	Prefix          string   `toml:"prefix"`
+	OutputMetadata  string   `toml:"output-metadata"`
+	StopNodeOnError string   `toml:"stop-node-on-error"`
+	Fsync           string   `toml:"fsync"`
+}
+type Streamers struct {
+	File File `toml:"file"`
 }

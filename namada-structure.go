@@ -1,6 +1,6 @@
 package blockchain_toml
 
-type NamadaConfig struct {
+type NamadaConfigFile struct {
 	WasmDir *string       `toml:"wasm_dir"`
 	Ledger  *NamadaLedger `toml:"ledger"`
 }

@@ -4,32 +4,36 @@ import (
 	"dario.cat/mergo"
 	_ "embed"
 	"github.com/pelletier/go-toml"
-	"log"
 )
 
 var (
-	//go:embed toml/config.toml
-	defaultNamadaConfigTomlByte []byte
+	//go:embed toml/namadaConfig.toml
+	defaultNamadaConfigFileTomlByte []byte
 )
 
-func getDefaultNamadaConfig() *NamadaConfig {
-	var defaultConfig NamadaConfig
-	err := toml.Unmarshal(defaultNamadaConfigTomlByte, &defaultConfig)
+func getDefaultNamadaConfigFile() *NamadaConfigFile {
+	var defaultFile NamadaConfigFile
+	err := toml.Unmarshal(defaultNamadaConfigFileTomlByte, &defaultFile)
 	if err != nil {
-		panic("Cannot convert config.toml into structure!!" + err.Error())
+		panic("Cannot convert NamadaConfigFile.toml into structure!!" + err.Error())
 	}
-	return &defaultConfig
+	return &defaultFile
 }
 
-func ExportMergedNamadaConfigBytes(config *NamadaConfig) ([]byte, error) {
-	if err := MergeNamadaConfigToml(config); err != nil {
-		log.Fatalf("Merge failed! \n%s", err.Error())
+func (c *NamadaConfigFile) ExportMerge() ([]byte, error) {
+	err := c.Merge()
+	if err != nil {
+		return nil, err
 	}
-	return toml.Marshal(config)
+	t, err := toml.Marshal(c)
+	if err != nil {
+		return nil, err
+	}
+	return t, nil
 }
 
-func MergeNamadaConfigToml(config *NamadaConfig) error {
-	if err := mergo.Merge(config, *getDefaultNamadaConfig(), mergo.WithoutDereference); err != nil {
+func (c *NamadaConfigFile) Merge() error {
+	if err := mergo.Merge(c, *getDefaultNamadaConfigFile(), mergo.WithoutDereference); err != nil {
 		return err
 	}
 	return nil

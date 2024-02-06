@@ -6,15 +6,15 @@ import (
 
 func Test(t *testing.T) {
 	t.Run("addConfigToml test", AddConfigTomlTest)
-	t.Run("ExportMergedNamadaConfig test", ExportMergedConfigTest)
+	t.Run("ExportMergedNamadaConfigFile test", ExportMergedConfigTest)
 }
 
 func AddConfigTomlTest(t *testing.T) {
-	var config NamadaConfig
+	var config NamadaConfigFile
 	WASM_DIR := "Hello"
 	config.WasmDir = &WASM_DIR
 
-	err := MergeNamadaConfigToml(&config)
+	err := MergeNamadaConfigFileToml(&config)
 	if err != nil {
 		t.Fatalf("Error occurred: %s", err.Error())
 		return
@@ -25,11 +25,11 @@ func AddConfigTomlTest(t *testing.T) {
 }
 
 func ExportMergedConfigTest(t *testing.T) {
-	var config NamadaConfig
-	WASM_DIR := "ExportMergedNamadaConfig"
+	var config NamadaConfigFile
+	WASM_DIR := "ExportMergedNamadaConfigFile"
 	config.WasmDir = &WASM_DIR
 
-	bytes, err := ExportMergedNamadaConfigBytes(&config)
+	bytes, err := ExportMergedNamadaConfigFileBytes(&config)
 	if err != nil {
 		t.Fatalf("%s", err.Error())
 	}
