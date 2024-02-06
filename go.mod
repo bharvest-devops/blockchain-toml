@@ -1,4 +1,4 @@
-module github.com/bharvest-devops/namada-toml
+module github.com/bharvest-devops/blockchain-toml
 
 go 1.21.6
 
