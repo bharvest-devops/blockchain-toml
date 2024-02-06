@@ -5,16 +5,25 @@ import (
 )
 
 func Test(t *testing.T) {
-	t.Run("addConfigToml test", AddConfigTomlTest)
-	t.Run("ExportMergedNamadaConfigFile test", ExportMergedConfigTest)
+	t.Run("namada merge test", NamadaConfigMergeTest)
+	t.Run("namada export merge test", NamadaConfigExportMergeTest)
+
+	t.Run("cosmos merge test", CosmosConfigMergeTest)
+	t.Run("cosmos export merge test", CosmosConfigExportMergeTest)
+
+	t.Run("cosmos merge test", CosmosAppMergeTest)
+	t.Run("cosmos export merge test", CosmosAppExportMergeTest)
 }
 
-func AddConfigTomlTest(t *testing.T) {
+func NamadaConfigMergeTest(t *testing.T) {
 	var config NamadaConfigFile
 	WASM_DIR := "Hello"
 	config.WasmDir = &WASM_DIR
 
-	err := MergeNamadaConfigFileToml(&config)
+	err := config.Merge()
+	if err != nil {
+		return
+	}
 	if err != nil {
 		t.Fatalf("Error occurred: %s", err.Error())
 		return
@@ -24,12 +33,12 @@ func AddConfigTomlTest(t *testing.T) {
 	}
 }
 
-func ExportMergedConfigTest(t *testing.T) {
+func NamadaConfigExportMergeTest(t *testing.T) {
 	var config NamadaConfigFile
 	WASM_DIR := "ExportMergedNamadaConfigFile"
 	config.WasmDir = &WASM_DIR
 
-	bytes, err := ExportMergedNamadaConfigFileBytes(&config)
+	bytes, err := config.ExportMerge()
 	if err != nil {
 		t.Fatalf("%s", err.Error())
 	}

@@ -7,7 +7,7 @@ package blockchain_toml
 type CosmosConfigFile struct {
 	ProxyApp               string                `toml:"proxy_app"`
 	Moniker                string                `toml:"moniker"`
-	BlockSync              bool                  `toml:"block_sync"`
+	BoolBlockSync          bool                  `toml:"block_sync"`
 	DbBackend              string                `toml:"db_backend"`
 	DbDir                  string                `toml:"db_dir"`
 	LogLevel               string                `toml:"log_level"`
