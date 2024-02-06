@@ -24,7 +24,7 @@ func getDefaultConfig() *Config {
 }
 
 func AddConfigToml(config *Config) error {
-	if err := mergo.Merge(config, getDefaultConfig(), mergo.WithoutDereference); err != nil {
+	if err := mergo.Merge(config, *getDefaultConfig(), mergo.WithoutDereference); err != nil {
 		log.Fatalf("Cannot merge with default config!\n %s", err.Error())
 	}
 
