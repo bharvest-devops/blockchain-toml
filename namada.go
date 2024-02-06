@@ -23,10 +23,16 @@ func getDefaultConfig() *Config {
 	return &defaultConfig
 }
 
+func ExportMergedConfig(config *Config) ([]byte, error) {
+	if err := AddConfigToml(config); err != nil {
+		log.Fatalf("Merge failed! \n%s", err.Error())
+	}
+	return toml.Marshal(config)
+}
+
 func AddConfigToml(config *Config) error {
 	if err := mergo.Merge(config, *getDefaultConfig(), mergo.WithoutDereference); err != nil {
-		log.Fatalf("Cannot merge with default config!\n %s", err.Error())
+		return err
 	}
-
 	return nil
 }
