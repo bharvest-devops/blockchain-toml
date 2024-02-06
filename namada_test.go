@@ -10,7 +10,7 @@ func Test(t *testing.T) {
 }
 
 func AddConfigTomlTest(t *testing.T) {
-	var config Config
+	var config NamadaConfig
 	WASM_DIR := "Hello"
 	config.WasmDir = &WASM_DIR
 
@@ -25,7 +25,7 @@ func AddConfigTomlTest(t *testing.T) {
 }
 
 func ExportMergedConfigTest(t *testing.T) {
-	var config Config
+	var config NamadaConfig
 	WASM_DIR := "ExportMergedNamadaConfig"
 	config.WasmDir = &WASM_DIR
 

@@ -1,18 +1,18 @@
 package blockchain_toml
 
-type Config struct {
-	WasmDir *string `toml:"wasm_dir"`
-	Ledger  *Ledger `toml:"ledger"`
+type NamadaConfig struct {
+	WasmDir *string       `toml:"wasm_dir"`
+	Ledger  *NamadaLedger `toml:"ledger"`
 }
-type Ledger struct {
-	GenesisTime    *string         `toml:"genesis_time"`
-	ChainID        *string         `toml:"chain_id"`
-	Shell          *Shell          `toml:"shell"`
-	Cometbft       *Cometbft       `toml:"cometbft"`
-	EthereumBridge *EthereumBridge `toml:"ethereum_bridge"`
+type NamadaLedger struct {
+	GenesisTime    *string               `toml:"genesis_time"`
+	ChainID        *string               `toml:"chain_id"`
+	Shell          *NamadaShell          `toml:"shell"`
+	Cometbft       *NamadaCometbft       `toml:"cometbft"`
+	EthereumBridge *NamadaEthereumBridge `toml:"ethereum_bridge"`
 }
 
-type Shell struct {
+type NamadaShell struct {
 	BaseDir                    *string `toml:"base_dir"`
 	StorageReadPastHeightLimit *int    `toml:"storage_read_past_height_limit"`
 	DbDir                      *string `toml:"db_dir"`
@@ -20,7 +20,7 @@ type Shell struct {
 	TendermintMode             *string `toml:"tendermint_mode"`
 }
 
-type RPC struct {
+type NamadaRPC struct {
 	Laddr                     *string        `toml:"laddr"`
 	CorsAllowedOrigins        *[]interface{} `toml:"cors_allowed_origins"`
 	CorsAllowedMethods        *[]string      `toml:"cors_allowed_methods"`
@@ -39,7 +39,7 @@ type RPC struct {
 	PprofLaddr                *string        `toml:"pprof_laddr"`
 }
 
-type P2P struct {
+type NamadaP2P struct {
 	Laddr                        *string `toml:"laddr"`
 	ExternalAddress              *string `toml:"external_address"`
 	Seeds                        *string `toml:"seeds"`
@@ -63,7 +63,7 @@ type P2P struct {
 	DialTimeout                  *string `toml:"dial_timeout"`
 }
 
-type Mempool struct {
+type NamadaMempool struct {
 	Recheck               *bool   `toml:"recheck"`
 	Broadcast             *bool   `toml:"broadcast"`
 	WalDir                *string `toml:"wal_dir"`
@@ -75,7 +75,7 @@ type Mempool struct {
 	MaxBatchBytes         *int    `toml:"max_batch_bytes"`
 }
 
-type Consensus struct {
+type NamadaConsensus struct {
 	WalFile                     *string `toml:"wal_file"`
 	TimeoutPropose              *string `toml:"timeout_propose"`
 	TimeoutProposeDelta         *string `toml:"timeout_propose_delta"`
@@ -92,22 +92,22 @@ type Consensus struct {
 	PeerQueryMaj23SleepDuration *string `toml:"peer_query_maj23_sleep_duration"`
 }
 
-type Storage struct {
+type NamadaStorage struct {
 	DiscardAbciResponses *bool `toml:"discard_abci_responses"`
 }
 
-type TxIndex struct {
+type NamadaTxIndex struct {
 	Indexer *string `toml:"indexer"`
 }
 
-type Instrumentation struct {
+type NamadaInstrumentation struct {
 	Prometheus           *bool   `toml:"prometheus"`
 	PrometheusListenAddr *string `toml:"prometheus_listen_addr"`
 	MaxOpenConnections   *int    `toml:"max_open_connections"`
 	Namespace            *string `toml:"namespace"`
 }
 
-type Statesync struct {
+type NamadaStatesync struct {
 	Enable        *bool   `toml:"enable"`
 	RPCServers    *string `toml:"rpc_servers"`
 	TrustHeight   *int    `toml:"trust_height"`
@@ -117,37 +117,37 @@ type Statesync struct {
 	TempDir       *string `toml:"temp_dir"`
 }
 
-type Fastsync struct {
+type NamadaFastsync struct {
 	Version *string `toml:"version"`
 }
 
-type Cometbft struct {
-	ProxyApp               *string          `toml:"proxy_app"`
-	Moniker                *string          `toml:"moniker"`
-	FastSync               *bool            `toml:"fast_sync"`
-	DbBackend              *string          `toml:"db_backend"`
-	DbDir                  *string          `toml:"db_dir"`
-	LogLevel               *string          `toml:"log_level"`
-	LogFormat              *string          `toml:"log_format"`
-	GenesisFile            *string          `toml:"genesis_file"`
-	PrivValidatorKeyFile   *string          `toml:"priv_validator_key_file"`
-	PrivValidatorStateFile *string          `toml:"priv_validator_state_file"`
-	PrivValidatorLaddr     *string          `toml:"priv_validator_laddr"`
-	NodeKeyFile            *string          `toml:"node_key_file"`
-	Abci                   *string          `toml:"abci"`
-	FilterPeers            *bool            `toml:"filter_peers"`
-	RPC                    *RPC             `toml:"rpc"`
-	P2P                    *P2P             `toml:"p2p"`
-	Mempool                *Mempool         `toml:"mempool"`
-	Consensus              *Consensus       `toml:"consensus"`
-	Storage                *Storage         `toml:"storage"`
-	TxIndex                *TxIndex         `toml:"tx_index"`
-	Instrumentation        *Instrumentation `toml:"instrumentation"`
-	Statesync              *Statesync       `toml:"statesync"`
-	Fastsync               *Fastsync        `toml:"fastsync"`
+type NamadaCometbft struct {
+	ProxyApp               *string                `toml:"proxy_app"`
+	Moniker                *string                `toml:"moniker"`
+	FastSync               *bool                  `toml:"fast_sync"`
+	DbBackend              *string                `toml:"db_backend"`
+	DbDir                  *string                `toml:"db_dir"`
+	LogLevel               *string                `toml:"log_level"`
+	LogFormat              *string                `toml:"log_format"`
+	GenesisFile            *string                `toml:"genesis_file"`
+	PrivValidatorKeyFile   *string                `toml:"priv_validator_key_file"`
+	PrivValidatorStateFile *string                `toml:"priv_validator_state_file"`
+	PrivValidatorLaddr     *string                `toml:"priv_validator_laddr"`
+	NodeKeyFile            *string                `toml:"node_key_file"`
+	Abci                   *string                `toml:"abci"`
+	FilterPeers            *bool                  `toml:"filter_peers"`
+	RPC                    *NamadaRPC             `toml:"rpc"`
+	P2P                    *NamadaP2P             `toml:"p2p"`
+	Mempool                *NamadaMempool         `toml:"mempool"`
+	Consensus              *NamadaConsensus       `toml:"consensus"`
+	Storage                *NamadaStorage         `toml:"storage"`
+	TxIndex                *NamadaTxIndex         `toml:"tx_index"`
+	Instrumentation        *NamadaInstrumentation `toml:"instrumentation"`
+	Statesync              *NamadaStatesync       `toml:"statesync"`
+	Fastsync               *NamadaFastsync        `toml:"fastsync"`
 }
 
-type EthereumBridge struct {
+type NamadaEthereumBridge struct {
 	Mode              *string `toml:"mode"`
 	OracleRPCEndpoint *string `toml:"oracle_rpc_endpoint"`
 	ChannelBufferSize *int    `toml:"channel_buffer_size"`

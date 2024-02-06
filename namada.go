@@ -12,8 +12,8 @@ var (
 	defaultNamadaConfigTomlByte []byte
 )
 
-func getDefaultNamadaConfig() *Config {
-	var defaultConfig Config
+func getDefaultNamadaConfig() *NamadaConfig {
+	var defaultConfig NamadaConfig
 	err := toml.Unmarshal(defaultNamadaConfigTomlByte, &defaultConfig)
 	if err != nil {
 		panic("Cannot convert config.toml into structure!!" + err.Error())
@@ -21,14 +21,14 @@ func getDefaultNamadaConfig() *Config {
 	return &defaultConfig
 }
 
-func ExportMergedNamadaConfigBytes(config *Config) ([]byte, error) {
+func ExportMergedNamadaConfigBytes(config *NamadaConfig) ([]byte, error) {
 	if err := MergeNamadaConfigToml(config); err != nil {
 		log.Fatalf("Merge failed! \n%s", err.Error())
 	}
 	return toml.Marshal(config)
 }
 
-func MergeNamadaConfigToml(config *Config) error {
+func MergeNamadaConfigToml(config *NamadaConfig) error {
 	if err := mergo.Merge(config, *getDefaultNamadaConfig(), mergo.WithoutDereference); err != nil {
 		return err
 	}
