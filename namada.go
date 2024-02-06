@@ -7,31 +7,29 @@ import (
 	"log"
 )
 
-type decodedToml = map[string]any
-
 var (
 	//go:embed toml/config.toml
-	defaultConfigTomlByte []byte
+	defaultNamadaConfigTomlByte []byte
 )
 
-func getDefaultConfig() *Config {
+func getDefaultNamadaConfig() *Config {
 	var defaultConfig Config
-	err := toml.Unmarshal(defaultConfigTomlByte, &defaultConfig)
+	err := toml.Unmarshal(defaultNamadaConfigTomlByte, &defaultConfig)
 	if err != nil {
 		panic("Cannot convert config.toml into structure!!" + err.Error())
 	}
 	return &defaultConfig
 }
 
-func ExportMergedConfig(config *Config) ([]byte, error) {
-	if err := AddConfigToml(config); err != nil {
+func ExportMergedNamadaConfigBytes(config *Config) ([]byte, error) {
+	if err := MergeNamadaConfigToml(config); err != nil {
 		log.Fatalf("Merge failed! \n%s", err.Error())
 	}
 	return toml.Marshal(config)
 }
 
-func AddConfigToml(config *Config) error {
-	if err := mergo.Merge(config, *getDefaultConfig(), mergo.WithoutDereference); err != nil {
+func MergeNamadaConfigToml(config *Config) error {
+	if err := mergo.Merge(config, *getDefaultNamadaConfig(), mergo.WithoutDereference); err != nil {
 		return err
 	}
 	return nil
