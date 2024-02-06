@@ -1,6 +1,8 @@
 package namada_toml
 
-import "testing"
+import (
+	"testing"
+)
 
 func Test(t *testing.T) {
 	t.Run("addConfigToml test", AddConfigTomlTest)
@@ -8,12 +10,15 @@ func Test(t *testing.T) {
 
 func AddConfigTomlTest(t *testing.T) {
 	var config Config
+	hello := "Hello"
+	config.WasmDir = &hello
 
-	_ = addConfigToml(&config)
-	//if err != nil {
-	//	t.Fatal("error occurred")
-	//	return
-	//} else {
-	//	t.Logf("Error didn't occur\n content: %s", *config.WasmDir)
-	//}
+	err := AddConfigToml(&config)
+	if err != nil {
+		t.Fatalf("Error occurred: %s", err.Error())
+		return
+	} else {
+		t.Log("Success")
+		return
+	}
 }

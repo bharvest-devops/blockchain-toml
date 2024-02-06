@@ -1,8 +1,7 @@
-module namada-toml
+module github.com/bharvest-devops/namada-toml
 
-go 1.21
+go 1.21.6
 
-require (
-	github.com/BurntSushi/toml v1.3.2 // indirect
-	github.com/pelletier/go-toml v1.9.5 // indirect
-)
+require github.com/pelletier/go-toml v1.9.5
+
+require dario.cat/mergo v1.0.0 // indirect
