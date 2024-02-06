@@ -6,12 +6,13 @@ import (
 
 func Test(t *testing.T) {
 	t.Run("addConfigToml test", AddConfigTomlTest)
+	t.Run("ExportMergedConfig test", ExportMergedConfigTest)
 }
 
 func AddConfigTomlTest(t *testing.T) {
 	var config Config
-	hello := "Hello"
-	config.WasmDir = &hello
+	WASM_DIR := "Hello"
+	config.WasmDir = &WASM_DIR
 
 	err := AddConfigToml(&config)
 	if err != nil {
@@ -21,4 +22,18 @@ func AddConfigTomlTest(t *testing.T) {
 		t.Log("Success")
 		return
 	}
+}
+
+func ExportMergedConfigTest(t *testing.T) {
+	var config Config
+	WASM_DIR := "ExportMergedConfig"
+	config.WasmDir = &WASM_DIR
+
+	bytes, err := ExportMergedConfig(&config)
+	if err != nil {
+		t.Fatalf("%s", err.Error())
+	}
+
+	t.Logf("\n%s", string(bytes))
+
 }
