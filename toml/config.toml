@@ -1,0 +1,125 @@
+wasm_dir = "wasm"
+
+[ledger]
+genesis_time = "2024-02-01T18:00:00+00:00"
+chain_id = "shielded-expedition.b40d8e9055"
+
+[ledger.shell]
+base_dir = "/home/operator/namada/shielded-expedition.b40d8e9055"
+storage_read_past_height_limit = 3600
+db_dir = "db"
+cometbft_dir = "cometbft"
+tendermint_mode = "Full"
+
+[ledger.cometbft]
+proxy_app = "tcp://127.0.0.1:26658"
+moniker = "technodrome"
+fast_sync = true
+db_backend = "goleveldb"
+db_dir = "data"
+log_level = "info"
+log_format = "plain"
+genesis_file = "config/genesis.json"
+priv_validator_key_file = "config/priv_validator_key.json"
+priv_validator_state_file = "data/priv_validator_state.json"
+priv_validator_laddr = ""
+node_key_file = "config/node_key.json"
+abci = "socket"
+filter_peers = false
+
+[ledger.cometbft.rpc]
+laddr = "tcp://127.0.0.1:26657"
+cors_allowed_origins = []
+cors_allowed_methods = ["HEAD", "GET", "POST"]
+cors_allowed_headers = ["Origin", "Accept", "Content-Type", "X-Requested-With", "X-Server-Time"]
+grpc_laddr = ""
+grpc_max_open_connections = 900
+unsafe = false
+max_open_connections = 900
+max_subscription_clients = 100
+max_subscriptions_per_client = 5
+timeout_broadcast_tx_commit = "10000ms"
+max_body_bytes = 1000000
+max_header_bytes = 1048576
+tls_cert_file = ""
+tls_key_file = ""
+pprof_laddr = ""
+
+[ledger.cometbft.p2p]
+laddr = "tcp://0.0.0.0:26656"
+external_address = ""
+seeds = ""
+persistent_peers = "tcp://7340273a93f857595398b00f30a0d135242b299f@65.109.85.203:26656,tcp://65a99d49deaf775cc9484d6467fe30fff15924ae@172.17.0.3:26656,tcp://8a896561e77c1c4f1cfef4ce696a7d4e62183abe@34.125.137.100:26656,tcp://a176bb37f965be93cd0ad93b3e5aad335d2b8b84@65.109.32.148:26656,tcp://e023793194c633908bbd6942ed83db0b5b5b22ca@141.95.33.198:36656,tcp://6e6ed8bc29fc310a6a418dfb9a7ea32aad83e16d@162.55.6.163:26656,tcp://e72107e1acec2c7f6fdc04372940f3d725f5206a@65.109.72.13:26656,tcp://75b9cb3ede470bbbad49818119563cbf3c46b7a6@131.153.142.39:26656,tcp://6bcf9ecc8b6b280e5edae13eb02d6bd5fb2211e7@95.217.231.107:26656,tcp://c6f279b36c2cc9bafd8fb7da97df66776f52437c@94.130.90.47:26656,tcp://42fe3f66171a677375ceeee36bf1649a9de75ec8@65.108.238.215:26656,tcp://18806be6e6a5eb97b94924467e6604d5a788ec5b@65.109.33.26:26656,tcp://9e8f0a49b5a42a6cb532b35000578015f3b2c38e@135.181.134.151:36656,tcp://5d94e3d9ffd0c084c5b3127d7c2fb53cbf26869a@135.181.128.23:26656,tcp://1841d08749df12b974e262f5c9ce61b1562a2827@80.64.208.172:26656,tcp://ffb17c6e5b785bb057dfffecb15a42afc46542fa@149.28.137.227:26656,tcp://1bb061c17c1fda4a877b92e9bb370dff82748986@51.77.226.129:26656,tcp://6553e277ae9cd9098ee6bc518328427eea69eb5b@45.33.86.221:26656,tcp://9d56279a195e6cb89627036301d5dfc8fa540312@65.109.158.190:26656,tcp://428198eef9ee1d66df615048779240dc7727a1dd@0.0.0.0:26656,tcp://e142cbeaaa892b9a13deac6a56dcf4502e2945ad@148.113.1.70:26656,tcp://5aaf2e719efbd1abff2aed1c740c656e7e283dc9@95.216.247.54:26656,tcp://03deabda36703e5bd592eb750377395de2f99ede@65.108.199.79:26112,tcp://ad7927e537e4dcc2030e1574a39b030f7f4be9f1@3.85.207.191:26656,tcp://a14fc14503a99b3a46a63307a75d407e57a9358a@65.108.101.62:26656,tcp://43208b7bf34291f7d9e9159ec995264f8ece0a97@5.199.172.61:26656,tcp://f619ee79037b1891768783ca2a410d4c85ce26c8@95.217.60.22:60856,tcp://f0f7ff58d767ea03188a99115a38e9130b55e5c2@65.108.13.212:26656,tcp://c2d0b83418f6fb8b780f6bbdbdc2e0719f967824@158.220.127.197:26656,tcp://16ba2530f266e1d1ca60b5b68375f703e28730ce@65.109.85.242:26656,tcp://43652f812846f16fd9a99a93e7bc4b1015090c5a@65.21.69.221:26656,tcp://467e9cb94364ade89e9a8acef8bca7d0c3f002ac@38.242.152.80:26656,tcp://bdee0ada97fe77ce554123ec540c2a3510e25dd2@109.205.182.127:26656,tcp://663bbd1603a247562f95fdbdbd517ee177cd0104@34.107.45.76:26656,tcp://1c7491ac0788cb3cd8d4240137c80db70d599edd@65.21.95.160:26656,tcp://938701385ff81223d8aa5dc9145d3bc663196907@142.132.194.124:19904,tcp://0546acfa046274f76d1f77b72c567768bd2d5cca@185.172.191.9:26656,tcp://98883ef5da861aa32dbd702b5b8803db721ffe77@65.109.117.208:10000,tcp://8e42bab19fe84a2f26b6973a6dddfc7169a52f01@51.89.115.168:26656,tcp://ff66fc5884859b81c48d4936a2dc2ed0dde9b807@131.153.158.193:26656,tcp://44f66d350e7a411842001e986a780a8ce74c4a99@185.189.181.99:26656,tcp://16698197fc5addd7b010612ad586556f6ff11338@65.108.2.45:26656,tcp://738c019ec561119feb5aaf9e0b6b538877bb62e9@141.94.143.203:26656,tcp://1ca88b9ef88cffe598cb5f337ed17698bf0c7f17@103.195.100.160:26656,tcp://4ff683191183da06859f4987733803838f69f8f2@218.155.161.169:30600,tcp://cfe3213fbde521463306a5bc5bf278d4fe123ad8@195.88.87.74:26656,tcp://44565a95faa6b6feedfa7ebb9f5eb2c6dec5732f@65.108.236.229:26656,tcp://efdfa5e97b76420190a4ae3b22135cb5d4e54ab1@198.55.59.68:26656,tcp://2e7d5463fe8405fe4acbffcc6e89830840e8fffe@5.199.172.43:26656,tcp://e64b9cd12f1990a2301ac2efd0dd8c86e42a47b1@65.108.225.186:26656,tcp://3e6064da09e147a7ae5d1dcff19fc4758630cfa4@142.132.135.125:24656,tcp://603c500781261ed27281273017c4ccaedfcfd673@3.72.13.72:26656,tcp://4cfda55d9ba4d66db46d356186351176579c975d@135.181.134.148:26656,tcp://3bb55affcdf36c10d207ca40c5f42cc21984854e@65.108.76.60:36656,tcp://2730f76b67dfb7dfc266d83b0e611ff57e9e3514@162.55.80.21:26656,tcp://c3917f853519a9dc460542e382c276caa7170ce5@162.55.230.123:26656,tcp://5890efc822a0fa02d289c6e47cd2ee6b9a4ac693@62.171.156.190:26656,tcp://ff998ae807e1e0523bdba72ad9c9dc244e3fd952@65.109.61.50:26656,tcp://848c4482b4b4f3255f374c742d5b539f509fc5d1@167.71.55.25:26656,tcp://66ee66185dcaf6f60e872521fcc7e93d9b32c434@43.131.63.125:26656,tcp://2f610a2a90a4e779a5db48b0b42574e4c5f572d2@135.181.246.250:3000,tcp://52176ed83fc6ca81522ea436fb7b92e8e24c3b37@89.38.98.251:26656,tcp://3b8e58431ee4b331c2e4bc0763caa5364cd56ed9@95.217.203.60:26656,tcp://46e32b2138d41e6ac6a252849ee45d711deb97e4@65.108.238.167:26666,tcp://a5f91935ee9dd49893f57b175dce59412faa7087@141.94.243.95:26656,tcp://6cb53e69a64908ad59a17efd6d83930f7a10bd04@54.36.166.159:26656,tcp://a9964425338396b764fd8e8ecc325f480105535b@95.217.16.5:26656,tcp://4288ed01def5207eb01178b07f099116e431a8df@94.130.53.94:26656,tcp://68aa2d6c2d933e830567eefd0f3e33d02ec52efa@95.217.85.149:36656,tcp://aa0140cf510f21bb2a1dd9603fc48056ccfe4aa2@65.108.75.107:58656,tcp://a58ea82b63089e6f493a15b092f01afc43c48708@65.108.131.189:26656,tcp://514915b2734f3df2aa1f863a6722cc9117ad680c@34.80.225.203:26656,tcp://c37ba6722df08847ef9a6cb5fda943ee9ccd36ab@37.120.245.26:26656,tcp://b394ccfb8ac799dae70f338a27b9d570fbb90b6e@88.198.200.207:26656,tcp://cffe6fc4ef0ad63fd4f24643aa43b16acd309844@94.31.87.123:26656,tcp://17e7d64c896cfc80c89bf2ac4a706d2853363a55@72.12.130.222:46656,tcp://e210c77478d5bf26b68df11df996445968081489@142.132.151.35:26656,tcp://f862f34feb5ffddf784fa89e0ba8f59562dab47b@116.202.227.117:26656,tcp://45e22c17d32b4b9845c19a6636bbeeec2664941f@142.132.209.236:20056,tcp://37b505728d2cadbd3cf1554d166991d698f3f6ef@195.201.107.146:26656,tcp://98cab730dd1fa76ca1752c0aa297fe1bf53a88af@213.239.207.175:26656,tcp://4498bdf5d6d15cd07ec10d54fe8dc1a8bfd5bb2d@161.97.142.92:26656,tcp://98f4eaa413b914f38a9dd1c024e8839a8ec6f9be@95.216.225.15:26656,tcp://7d6dc8261263c4191f647fbb657ece71551784a5@154.91.1.69:26656,tcp://99a85c558e5f08af63dfcf0e21fbfaea729208bd@80.79.4.132:26656,tcp://19b57bd64688b582ffe359f4cb3264f75c5aaaca@65.108.101.19:20156,tcp://1174c5c37a8e8158d5c0d82ca0ebd74918b127a0@144.91.87.99:26656,tcp://390916fa4e021206a22bb27f25e5634aa83bd918@162.55.94.142:26656,tcp://aaa67957ff1f4dd72163d097cab00bb5187cebb4@65.108.73.124:28656,tcp://71bf85f470a5f6e76f63f4a3cd4d1a15c7455765@136.175.9.205:26656,tcp://f2ceba97b207c3fe1e892d20a2dc2ce2cf7ea200@144.76.221.57:26656,tcp://062d709e179d99bfeef8cafc4c7cccc3d95e5915@37.27.59.71:26656,tcp://b0d1ec8b861392e6109de20d74d78c3b4629637f@176.9.50.55:26656,tcp://89f8f28b0dfa3b889063deb4d7b60a91d06db7fd@135.181.165.157:26656,tcp://5929c0a0cc95d0daa5ef2685b340ec7688781c07@37.27.43.114:26656,tcp://9df924f853c3cbade7e4ab152415aa4145a8fa60@195.14.6.173:26656,tcp://ab163f98c7f39480f6e18ddc1d886041cc066615@144.76.65.89:26656,tcp://d4ee8ebb34782ac9d575887ec35740d2b8b790b5@65.108.229.120:26656,tcp://f2d53436d841ec53621d14c97479de977456acad@176.9.45.137:26656,tcp://bbde1b8adbb136b743018c7f92f5ee0162433fb6@65.109.39.125:26656,tcp://2a5d333048a5d5bfa273c5ae7735247cbc56e9f2@135.181.91.243:26656,tcp://72d8411386647fd2d00f76f8cb9fb9f826514047@84.247.128.11:26656,tcp://e8eb0b5ca0b0fad14022eca2dd39818e16420579@65.108.8.251:26656,tcp://e2fff39fff9c89ac7b4265f6995f6c827627ea94@51.91.118.45:26656,tcp://195763c651dc4586e95beaf11b19346eb4d907fe@34.28.125.251:26656,tcp://237bc53c62760c5b5cdffdcc0956bb0d63391ab0@173.212.223.233:36656,tcp://b75b2a0067ef673edb8fd2832c0b6b9776b8adec@52.8.123.83:26656,tcp://32b0a8efdcc72f637fec2f4b383eea23b9330eb6@15.235.214.56:26656,tcp://61ad01f7c201408f98d19f0b3bc235a62cf685e1@65.21.163.230:26656,tcp://177a8a5dbafcef80222bb07bfdb28fb9c0a9a5ac@37.27.69.100:26656"
+upnp = false
+addr_book_file = "config/addrbook.json"
+addr_book_strict = true
+max_num_inbound_peers = 40
+max_num_outbound_peers = 10
+unconditional_peer_ids = ""
+persistent_peers_max_dial_period = "0ms"
+flush_throttle_timeout = "100ms"
+max_packet_msg_payload_size = 1024
+send_rate = 5120000
+recv_rate = 5120000
+pex = true
+seed_mode = false
+private_peer_ids = ""
+allow_duplicate_ip = false
+handshake_timeout = "20000ms"
+dial_timeout = "3000ms"
+
+[ledger.cometbft.mempool]
+recheck = true
+broadcast = true
+wal_dir = ""
+size = 5000
+max_txs_bytes = 1073741824
+cache_size = 10000
+keep-invalid-txs-in-cache = false
+max_tx_bytes = 1048576
+max_batch_bytes = 0
+
+[ledger.cometbft.consensus]
+wal_file = "data/cs.wal/wal"
+timeout_propose = "3000ms"
+timeout_propose_delta = "500ms"
+timeout_prevote = "1000ms"
+timeout_prevote_delta = "500ms"
+timeout_precommit = "1000ms"
+timeout_precommit_delta = "500ms"
+timeout_commit = "10000ms"
+double_sign_check_height = 0
+skip_timeout_commit = false
+create_empty_blocks = true
+create_empty_blocks_interval = "0ms"
+peer_gossip_sleep_duration = "100ms"
+peer_query_maj23_sleep_duration = "2000ms"
+
+[ledger.cometbft.storage]
+discard_abci_responses = false
+
+[ledger.cometbft.tx_index]
+indexer = "null"
+
+[ledger.cometbft.instrumentation]
+prometheus = false
+prometheus_listen_addr = ":26660"
+max_open_connections = 3
+namespace = "namada_tm"
+
+[ledger.cometbft.statesync]
+enable = false
+rpc_servers = ""
+trust_height = 0
+trust_hash = ""
+trust_period = "168h0m0s"
+discovery_time = "15000ms"
+temp_dir = ""
+
+[ledger.cometbft.fastsync]
+version = "v0"
+
+[ledger.ethereum_bridge]
+mode = "RemoteEndpoint"
+oracle_rpc_endpoint = "http://127.0.0.1:8545"
+channel_buffer_size = 1000
