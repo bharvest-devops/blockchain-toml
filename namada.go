@@ -1,4 +1,4 @@
-package namada_toml
+package blockchain_toml
 
 import (
 	"dario.cat/mergo"

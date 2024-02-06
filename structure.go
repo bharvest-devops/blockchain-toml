@@ -1,4 +1,4 @@
-package namada_toml
+package blockchain_toml
 
 type Config struct {
 	WasmDir *string `toml:"wasm_dir"`
