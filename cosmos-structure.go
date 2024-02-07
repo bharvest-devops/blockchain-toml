@@ -149,16 +149,16 @@ type CosmosAppFile struct {
 	InterBlockCache   *bool   `toml:"inter-block-cache"`
 	IndexEvents       []*interface {
 	} `toml:"index-events"`
-	IavlCacheSize       *int      `toml:"iavl-cache-size"`
-	IavlDisableFastnode *bool     `toml:"iavl-disable-fastnode"`
-	Telemetry           Telemetry `toml:"telemetry"`
-	API                 API       `toml:"api"`
-	Rosetta             Rosetta   `toml:"rosetta"`
-	Grpc                Grpc      `toml:"grpc"`
-	GrpcWeb             GrpcWeb   `toml:"grpc-web"`
-	StateSync           StateSync `toml:"state-sync"`
-	Store               Store     `toml:"store"`
-	Streamers           Streamers `toml:"streamers"`
+	IavlCacheSize       *int       `toml:"iavl-cache-size"`
+	IavlDisableFastnode *bool      `toml:"iavl-disable-fastnode"`
+	Telemetry           *Telemetry `toml:"telemetry"`
+	API                 *API       `toml:"api"`
+	Rosetta             *Rosetta   `toml:"rosetta"`
+	Grpc                *Grpc      `toml:"grpc"`
+	GrpcWeb             *GrpcWeb   `toml:"grpc-web"`
+	StateSync           *StateSync `toml:"state-sync"`
+	Store               *Store     `toml:"store"`
+	Streamers           *Streamers `toml:"streamers"`
 }
 type Telemetry struct {
 	ServiceName             *string        `toml:"service-name"`
@@ -212,5 +212,5 @@ type File struct {
 	Fsync           *string   `toml:"fsync"`
 }
 type Streamers struct {
-	File File `toml:"file"`
+	File *File `toml:"file"`
 }
