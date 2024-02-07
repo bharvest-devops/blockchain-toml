@@ -1,6 +1,5 @@
 package blockchain_toml
 
-// +kubebuilder:object:generate
 type NamadaConfigFile struct {
 	WasmDir *string       `json:"wasmDir" toml:"wasm_dir"`
 	Ledger  *NamadaLedger `json:"ledger" toml:"ledger"`

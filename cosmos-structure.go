@@ -72,9 +72,8 @@ type CosmosP2P struct {
 	AllowDuplicateIP             *bool   `json:"allowDuplicateIP" toml:"allow_duplicate_ip"`
 	HandshakeTimeout             *string `json:"handshakeTimeout" toml:"handshake_timeout"`
 	DialTimeout                  *string `json:"dialTimeout" toml:"dial_timeout"`
-	ExternalAddress0             *string `json:"externalAddress0" toml:"external-address"`
-	PersistentPeers0             *string `json:"persistentPeers0" toml:"persistent-peers"`
 }
+
 type CosmosMempool struct {
 	Version               *string `json:"version" toml:"version"`
 	Recheck               *bool   `json:"recheck" toml:"recheck"`
