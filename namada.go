@@ -15,7 +15,7 @@ func getDefaultNamadaConfigFile() *NamadaConfigFile {
 	var defaultFile NamadaConfigFile
 	err := toml.Unmarshal(defaultNamadaConfigFileTomlByte, &defaultFile)
 	if err != nil {
-		panic("Cannot convert NamadaConfigFile.toml into structure!!" + err.Error())
+		panic("Cannot convert NamadaConfigFile.toml *into structure!!" + err.Error())
 	}
 	return &defaultFile
 }

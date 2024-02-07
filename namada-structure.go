@@ -21,22 +21,22 @@ type NamadaShell struct {
 }
 
 type NamadaRPC struct {
-	Laddr                     *string        `toml:"laddr"`
-	CorsAllowedOrigins        *[]interface{} `toml:"cors_allowed_origins"`
-	CorsAllowedMethods        *[]string      `toml:"cors_allowed_methods"`
-	CorsAllowedHeaders        *[]string      `toml:"cors_allowed_headers"`
-	GrpcLaddr                 *string        `toml:"grpc_laddr"`
-	GrpcMaxOpenConnections    *int           `toml:"grpc_max_open_connections"`
-	Unsafe                    *bool          `toml:"unsafe"`
-	MaxOpenConnections        *int           `toml:"max_open_connections"`
-	MaxSubscriptionClients    *int           `toml:"max_subscription_clients"`
-	MaxSubscriptionsPerClient *int           `toml:"max_subscriptions_per_client"`
-	TimeoutBroadcastTxCommit  *string        `toml:"timeout_broadcast_tx_commit"`
-	MaxBodyBytes              *int           `toml:"max_body_bytes"`
-	MaxHeaderBytes            *int           `toml:"max_header_bytes"`
-	TLSCertFile               *string        `toml:"tls_cert_file"`
-	TLSKeyFile                *string        `toml:"tls_key_file"`
-	PprofLaddr                *string        `toml:"pprof_laddr"`
+	Laddr                     *string   `toml:"laddr"`
+	CorsAllowedOrigins        *[]string `toml:"cors_allowed_origins"`
+	CorsAllowedMethods        *[]string `toml:"cors_allowed_methods"`
+	CorsAllowedHeaders        *[]string `toml:"cors_allowed_headers"`
+	GrpcLaddr                 *string   `toml:"grpc_laddr"`
+	GrpcMaxOpenConnections    *int      `toml:"grpc_max_open_connections"`
+	Unsafe                    *bool     `toml:"unsafe"`
+	MaxOpenConnections        *int      `toml:"max_open_connections"`
+	MaxSubscriptionClients    *int      `toml:"max_subscription_clients"`
+	MaxSubscriptionsPerClient *int      `toml:"max_subscriptions_per_client"`
+	TimeoutBroadcastTxCommit  *string   `toml:"timeout_broadcast_tx_commit"`
+	MaxBodyBytes              *int      `toml:"max_body_bytes"`
+	MaxHeaderBytes            *int      `toml:"max_header_bytes"`
+	TLSCertFile               *string   `toml:"tls_cert_file"`
+	TLSKeyFile                *string   `toml:"tls_key_file"`
+	PprofLaddr                *string   `toml:"pprof_laddr"`
 }
 
 type NamadaP2P struct {

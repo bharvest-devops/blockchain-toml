@@ -18,7 +18,7 @@ func getDefaultCosmosConfigFile() *CosmosConfigFile {
 	var defaultFile CosmosConfigFile
 	err := toml.Unmarshal(defaultCosmosConfigFileTomlByte, &defaultFile)
 	if err != nil {
-		panic("Cannot convert NamadaConfigFile.toml into structure!!" + err.Error())
+		panic("Cannot convert NamadaConfigFile.toml *into structure!!" + err.Error())
 	}
 	return &defaultFile
 }
@@ -46,7 +46,7 @@ func getDefaultCosmosAppFile() *CosmosAppFile {
 	var defaultFile CosmosAppFile
 	err := toml.Unmarshal(defaultCosmosAppFileTomlByte, &defaultFile)
 	if err != nil {
-		panic("Cannot convert NamadaConfigFile.toml into structure!!" + err.Error())
+		panic("Cannot convert NamadaConfigFile.toml *into structure!!" + err.Error())
 	}
 	return &defaultFile
 }

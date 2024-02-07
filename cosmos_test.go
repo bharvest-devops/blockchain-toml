@@ -6,7 +6,8 @@ import (
 
 func CosmosConfigMergeTest(t *testing.T) {
 	var config CosmosConfigFile
-	config.BoolBlockSync = false
+	boolBlockSync := false
+	config.BoolBlockSync = &boolBlockSync
 
 	err := config.Merge()
 	if err != nil {
@@ -23,7 +24,8 @@ func CosmosConfigMergeTest(t *testing.T) {
 
 func CosmosConfigExportMergeTest(t *testing.T) {
 	var config CosmosConfigFile
-	config.BoolBlockSync = false
+	boolBlockSync := false
+	config.BoolBlockSync = &boolBlockSync
 
 	bytes, err := config.ExportMerge()
 	if err != nil {
@@ -36,7 +38,8 @@ func CosmosConfigExportMergeTest(t *testing.T) {
 
 func CosmosAppMergeTest(t *testing.T) {
 	var config CosmosAppFile
-	config.PruningInterval = "0"
+	zero := "0"
+	config.PruningInterval = &zero
 
 	err := config.Merge()
 	if err != nil {
@@ -53,7 +56,8 @@ func CosmosAppMergeTest(t *testing.T) {
 
 func CosmosAppExportMergeTest(t *testing.T) {
 	var config CosmosAppFile
-	config.PruningInterval = "0"
+	zero := "0"
+	config.PruningInterval = &zero
 
 	bytes, err := config.ExportMerge()
 	if err != nil {
