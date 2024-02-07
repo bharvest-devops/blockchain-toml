@@ -20,7 +20,7 @@ func NamadaConfigMergeTest(t *testing.T) {
 	WASM_DIR := "Hello"
 	config.WasmDir = &WASM_DIR
 
-	err := config.Merge()
+	err := config.MergeWithDefault()
 	if err != nil {
 		return
 	}
@@ -38,7 +38,7 @@ func NamadaConfigExportMergeTest(t *testing.T) {
 	WASM_DIR := "ExportMergedNamadaConfigFile"
 	config.WasmDir = &WASM_DIR
 
-	bytes, err := config.ExportMerge()
+	bytes, err := config.ExportMergeWithDefault()
 	if err != nil {
 		t.Fatalf("%s", err.Error())
 	}

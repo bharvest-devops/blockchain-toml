@@ -59,7 +59,7 @@ func CosmosAppExportMergeTest(t *testing.T) {
 	zero := "0"
 	config.PruningInterval = &zero
 
-	bytes, err := config.ExportMerge()
+	bytes, err := config.ExportMergeWithDefault()
 	if err != nil {
 		t.Fatalf("%s", err.Error())
 	}

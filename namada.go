@@ -20,8 +20,15 @@ func getDefaultNamadaConfigFile() *NamadaConfigFile {
 	return &defaultFile
 }
 
-func (c *NamadaConfigFile) ExportMerge() ([]byte, error) {
-	err := c.Merge()
+func (c *NamadaConfigFile) MergeWithDefault() error {
+	if err := mergo.Merge(c, *getDefaultNamadaConfigFile(), mergo.WithoutDereference); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *NamadaConfigFile) ExportMergeWithDefault() ([]byte, error) {
+	err := c.MergeWithDefault()
 	if err != nil {
 		return nil, err
 	}
@@ -32,9 +39,21 @@ func (c *NamadaConfigFile) ExportMerge() ([]byte, error) {
 	return t, nil
 }
 
-func (c *NamadaConfigFile) Merge() error {
-	if err := mergo.Merge(c, *getDefaultNamadaConfigFile(), mergo.WithoutDereference); err != nil {
+func (c *NamadaConfigFile) MergeWithConfig(o *NamadaConfigFile) error {
+	if err := mergo.Merge(c, o, mergo.WithoutDereference); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (c *NamadaConfigFile) ExportMergeWithConfig(o *NamadaConfigFile) ([]byte, error) {
+	err := c.MergeWithConfig(o)
+	if err != nil {
+		return nil, err
+	}
+	t, err := toml.Marshal(c)
+	if err != nil {
+		return nil, err
+	}
+	return t, nil
 }

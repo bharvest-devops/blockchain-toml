@@ -23,8 +23,8 @@ func getDefaultCosmosConfigFile() *CosmosConfigFile {
 	return &defaultFile
 }
 
-func (c *CosmosConfigFile) ExportMerge() ([]byte, error) {
-	err := c.Merge()
+func (c *CosmosConfigFile) ExportMergeWithDefault() ([]byte, error) {
+	err := c.MergeWithDefault()
 	if err != nil {
 		return nil, err
 	}
@@ -35,7 +35,7 @@ func (c *CosmosConfigFile) ExportMerge() ([]byte, error) {
 	return t, nil
 }
 
-func (c *CosmosConfigFile) Merge() error {
+func (c *CosmosConfigFile) MergeWithDefault() error {
 	if err := mergo.Merge(c, *getDefaultCosmosConfigFile(), mergo.WithoutDereference); err != nil {
 		return err
 	}
@@ -51,7 +51,7 @@ func getDefaultCosmosAppFile() *CosmosAppFile {
 	return &defaultFile
 }
 
-func (c *CosmosAppFile) ExportMerge() ([]byte, error) {
+func (c *CosmosAppFile) ExportMergeWithDefault() ([]byte, error) {
 	err := c.Merge()
 	if err != nil {
 		return nil, err
