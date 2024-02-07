@@ -23,6 +23,13 @@ func getDefaultCosmosConfigFile() *CosmosConfigFile {
 	return &defaultFile
 }
 
+func (c *CosmosConfigFile) MergeWithDefault() error {
+	if err := mergo.Merge(c, *getDefaultCosmosConfigFile(), mergo.WithoutDereference); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (c *CosmosConfigFile) ExportMergeWithDefault() ([]byte, error) {
 	err := c.MergeWithDefault()
 	if err != nil {
@@ -35,11 +42,23 @@ func (c *CosmosConfigFile) ExportMergeWithDefault() ([]byte, error) {
 	return t, nil
 }
 
-func (c *CosmosConfigFile) MergeWithDefault() error {
-	if err := mergo.Merge(c, *getDefaultCosmosConfigFile(), mergo.WithoutDereference); err != nil {
+func (c *CosmosConfigFile) MergeWithConfig(o *CosmosConfigFile) error {
+	if err := mergo.Merge(c, o, mergo.WithoutDereference); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (c *CosmosConfigFile) ExportMergeWithConfig(o *CosmosConfigFile) ([]byte, error) {
+	err := c.MergeWithConfig(o)
+	if err != nil {
+		return nil, err
+	}
+	t, err := toml.Marshal(c)
+	if err != nil {
+		return nil, err
+	}
+	return t, nil
 }
 
 func getDefaultCosmosAppFile() *CosmosAppFile {
@@ -49,6 +68,13 @@ func getDefaultCosmosAppFile() *CosmosAppFile {
 		panic("Cannot convert NamadaConfigFile.toml *into structure!!" + err.Error())
 	}
 	return &defaultFile
+}
+
+func (c *CosmosAppFile) Merge() error {
+	if err := mergo.Merge(c, *getDefaultCosmosAppFile(), mergo.WithoutDereference); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (c *CosmosAppFile) ExportMergeWithDefault() ([]byte, error) {
@@ -63,9 +89,21 @@ func (c *CosmosAppFile) ExportMergeWithDefault() ([]byte, error) {
 	return t, nil
 }
 
-func (c *CosmosAppFile) Merge() error {
-	if err := mergo.Merge(c, *getDefaultCosmosAppFile(), mergo.WithoutDereference); err != nil {
+func (c *CosmosAppFile) MergeWithConfig(o *CosmosAppFile) error {
+	if err := mergo.Merge(c, o, mergo.WithoutDereference); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (c *CosmosAppFile) ExportMergeWithConfig(o *CosmosAppFile) ([]byte, error) {
+	err := c.MergeWithConfig(o)
+	if err != nil {
+		return nil, err
+	}
+	t, err := toml.Marshal(c)
+	if err != nil {
+		return nil, err
+	}
+	return t, nil
 }
