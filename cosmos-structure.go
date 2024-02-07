@@ -37,7 +37,7 @@ type CosmosRPC struct {
 	GrpcLaddr                            *string   `toml:"grpc_laddr"`
 	GrpcMaxOpenConnections               *int      `toml:"grpc_max_open_connections"`
 	Unsafe                               *bool     `toml:"unsafe"`
-	MaxOpenConnections                   *int      `toml:"max_open_connections"`
+	MaxOpenConnections                   *int32    `toml:"max_open_connections"`
 	MaxSubscriptionClients               *int      `toml:"max_subscription_clients"`
 	MaxSubscriptionsPerClient            *int      `toml:"max_subscriptions_per_client"`
 	ExperimentalSubscriptionBufferSize   *int      `toml:"experimental_subscription_buffer_size"`
@@ -58,8 +58,8 @@ type CosmosP2P struct {
 	Upnp                         *bool   `toml:"upnp"`
 	AddrBookFile                 *string `toml:"addr_book_file"`
 	AddrBookStrict               *bool   `toml:"addr_book_strict"`
-	MaxNumInboundPeers           *int    `toml:"max_num_inbound_peers"`
-	MaxNumOutboundPeers          *int    `toml:"max_num_outbound_peers"`
+	MaxNumInboundPeers           *int32  `toml:"max_num_inbound_peers"`
+	MaxNumOutboundPeers          *int32  `toml:"max_num_outbound_peers"`
 	UnconditionalPeerIds         *string `toml:"unconditional_peer_ids"`
 	PersistentPeersMaxDialPeriod *string `toml:"persistent_peers_max_dial_period"`
 	FlushThrottleTimeout         *string `toml:"flush_throttle_timeout"`
@@ -143,8 +143,8 @@ type CosmosAppFile struct {
 	PruningKeepRecent *string `toml:"pruning-keep-recent"`
 	PruningKeepEvery  *string `toml:"pruning-keep-every"`
 	PruningInterval   *string `toml:"pruning-interval"`
-	HaltHeight        *int    `toml:"halt-height"`
-	HaltTime          *int    `toml:"halt-time"`
+	HaltHeight        *uint64 `toml:"halt-height"`
+	HaltTime          *uint64 `toml:"halt-time"`
 	MinRetainBlocks   *int    `toml:"min-retain-blocks"`
 	InterBlockCache   *bool   `toml:"inter-block-cache"`
 	IndexEvents       []*interface {
@@ -173,7 +173,7 @@ type API struct {
 	Enable             *bool   `toml:"enable"`
 	Swagger            *bool   `toml:"swagger"`
 	Address            *string `toml:"address"`
-	MaxOpenConnections *int    `toml:"max-open-connections"`
+	MaxOpenConnections *int32  `toml:"max-open-connections"`
 	RPCReadTimeout     *int    `toml:"rpc-read-timeout"`
 	RPCWriteTimeout    *int    `toml:"rpc-write-timeout"`
 	RPCMaxBodyBytes    *int    `toml:"rpc-max-body-bytes"`

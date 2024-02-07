@@ -14,7 +14,7 @@ type NamadaLedger struct {
 
 type NamadaShell struct {
 	BaseDir                    *string `toml:"base_dir"`
-	StorageReadPastHeightLimit *int    `toml:"storage_read_past_height_limit"`
+	StorageReadPastHeightLimit *uint   `toml:"storage_read_past_height_limit"`
 	DbDir                      *string `toml:"db_dir"`
 	CometbftDir                *string `toml:"cometbft_dir"`
 	TendermintMode             *string `toml:"tendermint_mode"`
@@ -26,11 +26,11 @@ type NamadaRPC struct {
 	CorsAllowedMethods        *[]string `toml:"cors_allowed_methods"`
 	CorsAllowedHeaders        *[]string `toml:"cors_allowed_headers"`
 	GrpcLaddr                 *string   `toml:"grpc_laddr"`
-	GrpcMaxOpenConnections    *int      `toml:"grpc_max_open_connections"`
+	GrpcMaxOpenConnections    *int32    `toml:"grpc_max_open_connections"`
 	Unsafe                    *bool     `toml:"unsafe"`
-	MaxOpenConnections        *int      `toml:"max_open_connections"`
-	MaxSubscriptionClients    *int      `toml:"max_subscription_clients"`
-	MaxSubscriptionsPerClient *int      `toml:"max_subscriptions_per_client"`
+	MaxOpenConnections        *int32    `toml:"max_open_connections"`
+	MaxSubscriptionClients    *int32    `toml:"max_subscription_clients"`
+	MaxSubscriptionsPerClient *int32    `toml:"max_subscriptions_per_client"`
 	TimeoutBroadcastTxCommit  *string   `toml:"timeout_broadcast_tx_commit"`
 	MaxBodyBytes              *int      `toml:"max_body_bytes"`
 	MaxHeaderBytes            *int      `toml:"max_header_bytes"`
@@ -47,8 +47,8 @@ type NamadaP2P struct {
 	Upnp                         *bool   `toml:"upnp"`
 	AddrBookFile                 *string `toml:"addr_book_file"`
 	AddrBookStrict               *bool   `toml:"addr_book_strict"`
-	MaxNumInboundPeers           *int    `toml:"max_num_inbound_peers"`
-	MaxNumOutboundPeers          *int    `toml:"max_num_outbound_peers"`
+	MaxNumInboundPeers           *int32  `toml:"max_num_inbound_peers"`
+	MaxNumOutboundPeers          *int32  `toml:"max_num_outbound_peers"`
 	UnconditionalPeerIds         *string `toml:"unconditional_peer_ids"`
 	PersistentPeersMaxDialPeriod *string `toml:"persistent_peers_max_dial_period"`
 	FlushThrottleTimeout         *string `toml:"flush_throttle_timeout"`
@@ -110,7 +110,7 @@ type NamadaInstrumentation struct {
 type NamadaStatesync struct {
 	Enable        *bool   `toml:"enable"`
 	RPCServers    *string `toml:"rpc_servers"`
-	TrustHeight   *int    `toml:"trust_height"`
+	TrustHeight   *uint   `toml:"trust_height"`
 	TrustHash     *string `toml:"trust_hash"`
 	TrustPeriod   *string `toml:"trust_period"`
 	DiscoveryTime *string `toml:"discovery_time"`
