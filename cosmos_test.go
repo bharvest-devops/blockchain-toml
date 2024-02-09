@@ -9,7 +9,7 @@ func CosmosConfigMergeTest(t *testing.T) {
 	boolBlockSync := false
 	config.BoolBlockSync = &boolBlockSync
 
-	err := config.Merge()
+	err := config.MergeWithDefault()
 	if err != nil {
 		return
 	}
@@ -27,7 +27,7 @@ func CosmosConfigExportMergeTest(t *testing.T) {
 	boolBlockSync := false
 	config.BoolBlockSync = &boolBlockSync
 
-	bytes, err := config.ExportMerge()
+	bytes, err := config.ExportMergeWithDefault()
 	if err != nil {
 		t.Fatalf("%s", err.Error())
 	}
@@ -41,7 +41,7 @@ func CosmosAppMergeTest(t *testing.T) {
 	zero := "0"
 	config.PruningInterval = &zero
 
-	err := config.Merge()
+	err := config.MergeWithDefault()
 	if err != nil {
 		return
 	}
