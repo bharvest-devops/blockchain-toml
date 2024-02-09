@@ -29,6 +29,7 @@ type CosmosConfigFile struct {
 	TxIndex                *CosmosTxIndex         `json:"txIndex" toml:"tx_index"`
 	Instrumentation        *CosmosInstrumentation `json:"instrumentation" toml:"instrumentation"`
 }
+
 type CosmosRPC struct {
 	Laddr                                *string   `json:"laddr" toml:"laddr"`
 	CorsAllowedOrigins                   *[]string `json:"corsAllowedOrigins" toml:"cors_allowed_origins"`
@@ -50,6 +51,7 @@ type CosmosRPC struct {
 	TLSKeyFile                           *string   `json:"tlsKeyFile" toml:"tls_key_file"`
 	PprofLaddr                           *string   `json:"pprofLaddr" toml:"pprof_laddr"`
 }
+
 type CosmosP2P struct {
 	Laddr                        *string `json:"laddr" toml:"laddr"`
 	ExternalAddress              *string `json:"externalAddress" toml:"external_address"`
@@ -162,7 +164,6 @@ type CosmosAppFile struct {
 	GrpcWeb             *GrpcWeb       `json:"grpcWeb" toml:"grpc-web"`
 	StateSync           *StateSync     `json:"stateSync" toml:"state-sync"`
 	Store               *Store         `json:"store" toml:"store"`
-	Streamers           *Streamers     `json:"streamers" toml:"streamers"`
 }
 
 type Telemetry struct {
@@ -213,17 +214,4 @@ type StateSync struct {
 
 type Store struct {
 	Streamers []*interface{} `json:"streamers" toml:"streamers"`
-}
-
-type File struct {
-	Keys            *[]string `json:"keys" toml:"keys"`
-	WriteDir        *string   `json:"writeDir" toml:"write_dir"`
-	Prefix          *string   `json:"prefix" toml:"prefix"`
-	OutputMetadata  *string   `json:"outputMetadata" toml:"output-metadata"`
-	StopNodeOnError *string   `json:"stopNodeOnError" toml:"stop-node-on-error"`
-	Fsync           *string   `json:"fsync" toml:"fsync"`
-}
-
-type Streamers struct {
-	File *File `json:"file" toml:"file"`
 }

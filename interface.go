@@ -1,8 +1,8 @@
 package blockchain_toml
 
-type TomlFile interface {
+type CometBFTFile interface {
 	MergeWithDefault() error
 	ExportMergeWithDefault() ([]byte, error)
-	MergeWithConfig(o *TomlFile) error
-	ExportMergeWithConfig(o *TomlFile) ([]byte, error)
+	MergeWithConfig(o *CometBFTFile) error
+	ExportMergeWithConfig(o *CometBFTFile) ([]byte, error)
 }

@@ -42,14 +42,14 @@ func (c *CosmosConfigFile) ExportMergeWithDefault() ([]byte, error) {
 	return t, nil
 }
 
-func (c *CosmosConfigFile) MergeWithConfig(o *CosmosConfigFile) error {
-	if err := mergo.Merge(c, o, mergo.WithoutDereference); err != nil {
+func (c *CosmosConfigFile) MergeWithConfig(o CosmosConfigFile) error {
+	if err := mergo.Merge(c, o, mergo.WithOverride, mergo.WithoutDereference); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (c *CosmosConfigFile) ExportMergeWithConfig(o *CosmosConfigFile) ([]byte, error) {
+func (c *CosmosConfigFile) ExportMergeWithConfig(o CosmosConfigFile) ([]byte, error) {
 	err := c.MergeWithConfig(o)
 	if err != nil {
 		return nil, err
