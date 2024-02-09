@@ -157,13 +157,13 @@ type CosmosAppFile struct {
 	IndexEvents         []*interface{} `json:"indexEvents" toml:"index-events"`
 	IavlCacheSize       *int           `json:"iavlCacheSize" toml:"iavl-cache-size"`
 	IavlDisableFastnode *bool          `json:"iavlDisableFastnode" toml:"iavl-disable-fastnode"`
-	Telemetry           *Telemetry     `json:"telemetry" toml:"telemetry"`
-	API                 *API           `json:"api" toml:"api"`
-	Rosetta             *Rosetta       `json:"rosetta" toml:"rosetta"`
-	Grpc                *Grpc          `json:"grpc" toml:"grpc"`
-	GrpcWeb             *GrpcWeb       `json:"grpcWeb" toml:"grpc-web"`
-	StateSync           *StateSync     `json:"stateSync" toml:"state-sync"`
-	Store               *Store         `json:"store" toml:"store"`
+	Telemetry           Telemetry      `json:"telemetry" toml:"telemetry"`
+	API                 API            `json:"api" toml:"api"`
+	Rosetta             Rosetta        `json:"rosetta" toml:"rosetta"`
+	Grpc                Grpc           `json:"grpc" toml:"grpc"`
+	GrpcWeb             GrpcWeb        `json:"grpcWeb" toml:"grpc-web"`
+	StateSync           StateSync      `json:"stateSync" toml:"state-sync"`
+	Store               Store          `json:"store" toml:"store"`
 }
 
 type Telemetry struct {
