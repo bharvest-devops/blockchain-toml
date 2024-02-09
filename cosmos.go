@@ -80,7 +80,10 @@ func (c *CosmosConfigFile) ExportMergeWithTomlOverrides(overrides []byte) ([]byt
 		return nil, printError(err)
 	}
 	resp, err := toml.Marshal(originMap)
-	return resp, printError(err)
+	if err != nil {
+		return nil, printError(err)
+	}
+	return resp, nil
 }
 
 func getDefaultCosmosAppFile() *CosmosAppFile {
@@ -147,5 +150,9 @@ func (c *CosmosAppFile) ExportMergeWithTomlOverrides(overrides []byte) ([]byte, 
 	if err = mergo.Merge(&originMap, overridesMap, mergo.WithoutDereference, mergo.WithOverride); err != nil {
 		return nil, printError(err)
 	}
-	return toml.Marshal(originMap)
+	resp, err := toml.Marshal(originMap)
+	if err != nil {
+		return nil, printError(err)
+	}
+	return resp, nil
 }
