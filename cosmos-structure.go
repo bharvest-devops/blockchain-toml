@@ -163,7 +163,6 @@ type CosmosAppFile struct {
 	Grpc                Grpc           `json:"grpc" toml:"grpc"`
 	GrpcWeb             GrpcWeb        `json:"grpcWeb" toml:"grpc-web"`
 	StateSync           StateSync      `json:"stateSync" toml:"state-sync"`
-	Store               Store          `json:"store" toml:"store"`
 }
 
 type Telemetry struct {
@@ -210,8 +209,4 @@ type GrpcWeb struct {
 type StateSync struct {
 	SnapshotInterval   *int `json:"snapshotInterval" toml:"snapshot-Interval"`
 	SnapshotKeepRecent *int `json:"snapshotKeepRecent" toml:"snapshot-keep-recent"`
-}
-
-type Store struct {
-	Streamers []*interface{} `json:"streamers" toml:"streamers"`
 }
