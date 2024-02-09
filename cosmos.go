@@ -25,7 +25,7 @@ func getDefaultCosmosConfigFile() *CosmosConfigFile {
 
 func (c *CosmosConfigFile) MergeWithDefault() error {
 	if err := mergo.Merge(c, *getDefaultCosmosConfigFile(), mergo.WithoutDereference); err != nil {
-		return err
+		return printError(err)
 	}
 	return nil
 }
@@ -33,11 +33,11 @@ func (c *CosmosConfigFile) MergeWithDefault() error {
 func (c *CosmosConfigFile) ExportMergeWithDefault() ([]byte, error) {
 	err := c.MergeWithDefault()
 	if err != nil {
-		return nil, err
+		return nil, printError(err)
 	}
 	t, err := toml.Marshal(c)
 	if err != nil {
-		return nil, err
+		return nil, printError(err)
 	}
 	return t, nil
 }
@@ -45,7 +45,7 @@ func (c *CosmosConfigFile) ExportMergeWithDefault() ([]byte, error) {
 func (c *CosmosConfigFile) MergeWithConfig(o CosmosConfigFile) error {
 
 	if err := mergo.Merge(c, o, mergo.WithoutDereference, mergo.WithOverwriteWithEmptyValue); err != nil {
-		return err
+		return printError(err)
 	}
 	return nil
 }
@@ -53,11 +53,11 @@ func (c *CosmosConfigFile) MergeWithConfig(o CosmosConfigFile) error {
 func (c *CosmosConfigFile) ExportMergeWithConfig(o CosmosConfigFile) ([]byte, error) {
 	err := c.MergeWithConfig(o)
 	if err != nil {
-		return nil, err
+		return nil, printError(err)
 	}
 	t, err := toml.Marshal(c)
 	if err != nil {
-		return nil, err
+		return nil, printError(err)
 	}
 	return t, nil
 }
@@ -69,17 +69,18 @@ func (c *CosmosConfigFile) ExportMergeWithTomlOverrides(overrides []byte) ([]byt
 		err          error
 	)
 	if err = toml.Unmarshal(overrides, &overridesMap); err != nil {
-		return nil, err
+		return nil, printError(err)
 	}
 	tBytes, err := toml.Marshal(c)
 	err = toml.Unmarshal(tBytes, &originMap)
 	if err != nil {
-		return nil, err
+		return nil, printError(err)
 	}
 	if err = mergo.Merge(&originMap, overridesMap, mergo.WithoutDereference, mergo.WithOverride); err != nil {
-		return nil, err
+		return nil, printError(err)
 	}
-	return toml.Marshal(originMap)
+	resp, err := toml.Marshal(originMap)
+	return resp, printError(err)
 }
 
 func getDefaultCosmosAppFile() *CosmosAppFile {
@@ -93,7 +94,7 @@ func getDefaultCosmosAppFile() *CosmosAppFile {
 
 func (c *CosmosAppFile) MergeWithDefault() error {
 	if err := mergo.Merge(c, *getDefaultCosmosAppFile(), mergo.WithoutDereference); err != nil {
-		return err
+		return printError(err)
 	}
 	return nil
 }
@@ -101,18 +102,18 @@ func (c *CosmosAppFile) MergeWithDefault() error {
 func (c *CosmosAppFile) ExportMergeWithDefault() ([]byte, error) {
 	err := c.MergeWithDefault()
 	if err != nil {
-		return nil, err
+		return nil, printError(err)
 	}
 	t, err := toml.Marshal(c)
 	if err != nil {
-		return nil, err
+		return nil, printError(err)
 	}
 	return t, nil
 }
 
 func (c *CosmosAppFile) MergeWithConfig(o *CosmosAppFile) error {
 	if err := mergo.Merge(c, o, mergo.WithoutDereference); err != nil {
-		return err
+		return printError(err)
 	}
 	return nil
 }
@@ -120,11 +121,11 @@ func (c *CosmosAppFile) MergeWithConfig(o *CosmosAppFile) error {
 func (c *CosmosAppFile) ExportMergeWithConfig(o *CosmosAppFile) ([]byte, error) {
 	err := c.MergeWithConfig(o)
 	if err != nil {
-		return nil, err
+		return nil, printError(err)
 	}
 	t, err := toml.Marshal(c)
 	if err != nil {
-		return nil, err
+		return nil, printError(err)
 	}
 	return t, nil
 }
@@ -136,15 +137,15 @@ func (c *CosmosAppFile) ExportMergeWithTomlOverrides(overrides []byte) ([]byte, 
 		err          error
 	)
 	if err = toml.Unmarshal(overrides, &overridesMap); err != nil {
-		return nil, err
+		return nil, printError(err)
 	}
 	tBytes, err := toml.Marshal(c)
 	err = toml.Unmarshal(tBytes, &originMap)
 	if err != nil {
-		return nil, err
+		return nil, printError(err)
 	}
 	if err = mergo.Merge(&originMap, overridesMap, mergo.WithoutDereference, mergo.WithOverride); err != nil {
-		return nil, err
+		return nil, printError(err)
 	}
 	return toml.Marshal(originMap)
 }
