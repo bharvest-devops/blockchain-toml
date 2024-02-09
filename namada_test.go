@@ -4,18 +4,12 @@ import (
 	"testing"
 )
 
-func Test(t *testing.T) {
-	t.Run("namada merge test", NamadaConfigMergeTest)
-	t.Run("namada export merge test", NamadaConfigExportMergeTest)
-
-	t.Run("cosmos merge test", CosmosConfigMergeTest)
-	t.Run("cosmos export merge test", CosmosConfigExportMergeTest)
-
-	t.Run("cosmos merge test", CosmosAppMergeTest)
-	t.Run("cosmos export merge test", CosmosAppExportMergeTest)
+func TestNamada(t *testing.T) {
+	t.Run("namada merge test", testNamadaConfigMerge)
+	t.Run("namada export merge test", testNamadaConfigExportMerge)
 }
 
-func NamadaConfigMergeTest(t *testing.T) {
+func testNamadaConfigMerge(t *testing.T) {
 	var config NamadaConfigFile
 	WASM_DIR := "Hello"
 	config.WasmDir = &WASM_DIR
@@ -33,7 +27,7 @@ func NamadaConfigMergeTest(t *testing.T) {
 	}
 }
 
-func NamadaConfigExportMergeTest(t *testing.T) {
+func testNamadaConfigExportMerge(t *testing.T) {
 	var config NamadaConfigFile
 	WASM_DIR := "ExportMergedNamadaConfigFile"
 	config.WasmDir = &WASM_DIR

@@ -4,7 +4,15 @@ import (
 	"testing"
 )
 
-func CosmosConfigMergeTest(t *testing.T) {
+func TestCosmos(t *testing.T) {
+	t.Run("cosmos config merge test", testCosmosConfigMerge)
+	t.Run("cosmos config export merge test", testCosmosConfigExportMerge)
+
+	t.Run("cosmos app merge test", testCosmosAppMerge)
+	t.Run("cosmos app export merge test", testCosmosAppExportMerge)
+	t.Run("cosmos app merge with tomlOverrides", testCosmosAppMergeWithTomlOverrides)
+}
+func testCosmosConfigMerge(t *testing.T) {
 	var config CosmosConfigFile
 	boolBlockSync := false
 	config.BoolBlockSync = &boolBlockSync
@@ -22,7 +30,7 @@ func CosmosConfigMergeTest(t *testing.T) {
 	}
 }
 
-func CosmosConfigExportMergeTest(t *testing.T) {
+func testCosmosConfigExportMerge(t *testing.T) {
 	var config CosmosConfigFile
 	boolBlockSync := false
 	config.BoolBlockSync = &boolBlockSync
@@ -36,7 +44,7 @@ func CosmosConfigExportMergeTest(t *testing.T) {
 
 }
 
-func CosmosAppMergeTest(t *testing.T) {
+func testCosmosAppMerge(t *testing.T) {
 	var config CosmosAppFile
 	zero := "0"
 	config.PruningInterval = &zero
@@ -54,7 +62,7 @@ func CosmosAppMergeTest(t *testing.T) {
 	}
 }
 
-func CosmosAppExportMergeTest(t *testing.T) {
+func testCosmosAppExportMerge(t *testing.T) {
 	var config CosmosAppFile
 	zero := "0"
 	config.PruningInterval = &zero
@@ -66,4 +74,22 @@ func CosmosAppExportMergeTest(t *testing.T) {
 
 	t.Logf("\n%s", string(bytes))
 
+}
+
+func testCosmosAppMergeWithTomlOverrides(t *testing.T) {
+	var config CosmosAppFile
+	overrides := `
+	minimum-gas-prices = "0.1override"
+	new-base = "new base value"
+	
+	[api]
+	enable = false
+	new-field = "test"
+	`
+	bytes, err := config.ExportMergeWithTomlOverrides([]byte(overrides))
+	if err != nil {
+		t.Fatalf("%s", err.Error())
+	}
+
+	t.Logf("\n%s", string(bytes))
 }

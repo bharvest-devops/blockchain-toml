@@ -57,3 +57,23 @@ func (c *NamadaConfigFile) ExportMergeWithConfig(o *NamadaConfigFile) ([]byte, e
 	}
 	return t, nil
 }
+
+func (c *NamadaConfigFile) ExportMergeWithTomlOverrides(overrides []byte) ([]byte, error) {
+	var (
+		overridesMap map[string]interface{}
+		originMap    map[string]interface{}
+		err          error
+	)
+	if err = toml.Unmarshal(overrides, &overridesMap); err != nil {
+		return nil, err
+	}
+	tBytes, err := toml.Marshal(c)
+	err = toml.Unmarshal(tBytes, &originMap)
+	if err != nil {
+		return nil, err
+	}
+	if err = mergo.Merge(&originMap, overridesMap, mergo.WithoutDereference, mergo.WithOverride); err != nil {
+		return nil, err
+	}
+	return toml.Marshal(originMap)
+}
