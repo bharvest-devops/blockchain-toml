@@ -43,7 +43,7 @@ func (c *CosmosConfigFile) ExportMergeWithDefault() ([]byte, error) {
 }
 
 func (c *CosmosConfigFile) MergeWithConfig(o CosmosConfigFile) error {
-	if err := mergo.Merge(c, o, mergo.WithoutDereference); err != nil {
+	if err := mergo.Merge(c, o, mergo.WithoutDereference, mergo.WithOverwriteWithEmptyValue); err != nil {
 		return err
 	}
 	return nil
