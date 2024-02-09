@@ -5,29 +5,29 @@ package blockchain_toml
 // ###################################################
 
 type CosmosConfigFile struct {
-	ProxyApp               *string                `json:"proxyApp" toml:"proxy_app"`
-	Moniker                *string                `json:"moniker" toml:"moniker"`
-	BoolBlockSync          *bool                  `json:"boolBlockSync" toml:"block_sync"`
-	DbBackend              *string                `json:"dbBackend" toml:"db_backend"`
-	DbDir                  *string                `json:"dbDir" toml:"db_dir"`
-	LogLevel               *string                `json:"logLevel" toml:"log_level"`
-	LogFormat              *string                `json:"logFormat" toml:"log_format"`
-	GenesisFile            *string                `json:"genesisFile" toml:"genesis_file"`
-	PrivValidatorKeyFile   *string                `json:"privValidatorKeyFile" toml:"priv_validator_key_file"`
-	PrivValidatorStateFile *string                `json:"privValidatorStateFile" toml:"priv_validator_state_file"`
-	PrivValidatorLaddr     *string                `json:"privValidatorLaddr" toml:"priv_validator_laddr"`
-	NodeKeyFile            *string                `json:"nodeKeyFile" toml:"node_key_file"`
-	Abci                   *string                `json:"abci" toml:"abci"`
-	FilterPeers            *bool                  `json:"filterPeers" toml:"filter_peers"`
-	RPC                    *CosmosRPC             `json:"rpc" toml:"rpc"`
-	P2P                    *CosmosP2P             `json:"p2p" toml:"p2p"`
-	Mempool                *CosmosMempool         `json:"mempool" toml:"mempool"`
-	Statesync              *CosmosStatesync       `json:"statesync" toml:"statesync"`
-	Blocksync              *CosmosBlocksync       `json:"blocksync" toml:"blocksync"`
-	Consensus              *CosmosConsensus       `json:"consensus" toml:"consensus"`
-	Storage                *CosmosStorage         `json:"storage" toml:"storage"`
-	TxIndex                *CosmosTxIndex         `json:"txIndex" toml:"tx_index"`
-	Instrumentation        *CosmosInstrumentation `json:"instrumentation" toml:"instrumentation"`
+	ProxyApp               *string               `json:"proxyApp" toml:"proxy_app"`
+	Moniker                *string               `json:"moniker" toml:"moniker"`
+	BoolBlockSync          *bool                 `json:"boolBlockSync" toml:"block_sync"`
+	DbBackend              *string               `json:"dbBackend" toml:"db_backend"`
+	DbDir                  *string               `json:"dbDir" toml:"db_dir"`
+	LogLevel               *string               `json:"logLevel" toml:"log_level"`
+	LogFormat              *string               `json:"logFormat" toml:"log_format"`
+	GenesisFile            *string               `json:"genesisFile" toml:"genesis_file"`
+	PrivValidatorKeyFile   *string               `json:"privValidatorKeyFile" toml:"priv_validator_key_file"`
+	PrivValidatorStateFile *string               `json:"privValidatorStateFile" toml:"priv_validator_state_file"`
+	PrivValidatorLaddr     *string               `json:"privValidatorLaddr" toml:"priv_validator_laddr"`
+	NodeKeyFile            *string               `json:"nodeKeyFile" toml:"node_key_file"`
+	Abci                   *string               `json:"abci" toml:"abci"`
+	FilterPeers            *bool                 `json:"filterPeers" toml:"filter_peers"`
+	RPC                    CosmosRPC             `json:"rpc" toml:"rpc"`
+	P2P                    CosmosP2P             `json:"p2p" toml:"p2p"`
+	Mempool                CosmosMempool         `json:"mempool" toml:"mempool"`
+	Statesync              CosmosStatesync       `json:"statesync" toml:"statesync"`
+	Blocksync              CosmosBlocksync       `json:"blocksync" toml:"blocksync"`
+	Consensus              CosmosConsensus       `json:"consensus" toml:"consensus"`
+	Storage                CosmosStorage         `json:"storage" toml:"storage"`
+	TxIndex                CosmosTxIndex         `json:"txIndex" toml:"tx_index"`
+	Instrumentation        CosmosInstrumentation `json:"instrumentation" toml:"instrumentation"`
 }
 
 type CosmosRPC struct {
