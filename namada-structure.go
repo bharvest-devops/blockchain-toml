@@ -1,16 +1,16 @@
 package blockchain_toml
 
 type NamadaConfigFile struct {
-	WasmDir *string       `json:"wasmDir" toml:"wasm_dir"`
-	Ledger  *NamadaLedger `json:"ledger" toml:"ledger"`
+	WasmDir *string      `json:"wasmDir" toml:"wasm_dir"`
+	Ledger  NamadaLedger `json:"ledger" toml:"ledger"`
 }
 
 type NamadaLedger struct {
-	GenesisTime    *string               `json:"genesisTime" toml:"genesis_time"`
-	ChainID        *string               `json:"chainID" toml:"chain_id"`
-	Shell          *NamadaShell          `json:"shell" toml:"shell"`
-	Cometbft       *NamadaCometbft       `json:"cometbft" toml:"cometbft"`
-	EthereumBridge *NamadaEthereumBridge `json:"ethereumBridge" toml:"ethereum_bridge"`
+	GenesisTime    *string              `json:"genesisTime" toml:"genesis_time"`
+	ChainID        *string              `json:"chainID" toml:"chain_id"`
+	Shell          NamadaShell          `json:"shell" toml:"shell"`
+	Cometbft       NamadaCometbft       `json:"cometbft" toml:"cometbft"`
+	EthereumBridge NamadaEthereumBridge `json:"ethereumBridge" toml:"ethereum_bridge"`
 }
 
 type NamadaShell struct {
@@ -122,29 +122,29 @@ type NamadaFastsync struct {
 	Version *string `json:"version" toml:"version"`
 }
 type NamadaCometbft struct {
-	ProxyApp               *string                `json:"proxyApp" toml:"proxy_app"`
-	Moniker                *string                `json:"moniker" toml:"moniker"`
-	FastSync               *bool                  `json:"fastSync" toml:"fast_sync"`
-	DbBackend              *string                `json:"dbBackend" toml:"db_backend"`
-	DbDir                  *string                `json:"dbDir" toml:"db_dir"`
-	LogLevel               *string                `json:"logLevel" toml:"log_level"`
-	LogFormat              *string                `json:"logFormat" toml:"log_format"`
-	GenesisFile            *string                `json:"genesisFile" toml:"genesis_file"`
-	PrivValidatorKeyFile   *string                `json:"privValidatorKeyFile" toml:"priv_validator_key_file"`
-	PrivValidatorStateFile *string                `json:"privValidatorStateFile" toml:"priv_validator_state_file"`
-	PrivValidatorLaddr     *string                `json:"privValidatorLaddr" toml:"priv_validator_laddr"`
-	NodeKeyFile            *string                `json:"nodeKeyFile" toml:"node_key_file"`
-	Abci                   *string                `json:"abci" toml:"abci"`
-	FilterPeers            *bool                  `json:"filterPeers" toml:"filter_peers"`
-	RPC                    *NamadaRPC             `json:"rpc" toml:"rpc"`
-	P2P                    *NamadaP2P             `json:"p2p" toml:"p2p"`
-	Mempool                *NamadaMempool         `json:"mempool" toml:"mempool"`
-	Consensus              *NamadaConsensus       `json:"consensus" toml:"consensus"`
-	Storage                *NamadaStorage         `json:"storage" toml:"storage"`
-	TxIndex                *NamadaTxIndex         `json:"txIndex" toml:"tx_index"`
-	Instrumentation        *NamadaInstrumentation `json:"instrumentation" toml:"instrumentation"`
-	Statesync              *NamadaStatesync       `json:"statesync" toml:"statesync"`
-	Fastsync               *NamadaFastsync        `json:"fastsync" toml:"fastsync"`
+	ProxyApp               *string               `json:"proxyApp" toml:"proxy_app"`
+	Moniker                *string               `json:"moniker" toml:"moniker"`
+	FastSync               *bool                 `json:"fastSync" toml:"fast_sync"`
+	DbBackend              *string               `json:"dbBackend" toml:"db_backend"`
+	DbDir                  *string               `json:"dbDir" toml:"db_dir"`
+	LogLevel               *string               `json:"logLevel" toml:"log_level"`
+	LogFormat              *string               `json:"logFormat" toml:"log_format"`
+	GenesisFile            *string               `json:"genesisFile" toml:"genesis_file"`
+	PrivValidatorKeyFile   *string               `json:"privValidatorKeyFile" toml:"priv_validator_key_file"`
+	PrivValidatorStateFile *string               `json:"privValidatorStateFile" toml:"priv_validator_state_file"`
+	PrivValidatorLaddr     *string               `json:"privValidatorLaddr" toml:"priv_validator_laddr"`
+	NodeKeyFile            *string               `json:"nodeKeyFile" toml:"node_key_file"`
+	Abci                   *string               `json:"abci" toml:"abci"`
+	FilterPeers            *bool                 `json:"filterPeers" toml:"filter_peers"`
+	RPC                    NamadaRPC             `json:"rpc" toml:"rpc"`
+	P2P                    NamadaP2P             `json:"p2p" toml:"p2p"`
+	Mempool                NamadaMempool         `json:"mempool" toml:"mempool"`
+	Consensus              NamadaConsensus       `json:"consensus" toml:"consensus"`
+	Storage                NamadaStorage         `json:"storage" toml:"storage"`
+	TxIndex                NamadaTxIndex         `json:"txIndex" toml:"tx_index"`
+	Instrumentation        NamadaInstrumentation `json:"instrumentation" toml:"instrumentation"`
+	Statesync              NamadaStatesync       `json:"statesync" toml:"statesync"`
+	Fastsync               NamadaFastsync        `json:"fastsync" toml:"fastsync"`
 }
 
 type NamadaEthereumBridge struct {
