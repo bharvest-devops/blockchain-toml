@@ -2,10 +2,10 @@ wasm_dir = "wasm"
 
 [ledger]
 genesis_time = "2024-02-01T18:00:00+00:00"
-chain_id = "shielded-expedition.b40d8e9055"
+chain_id = ""
 
 [ledger.shell]
-base_dir = "/home/operator/namada/shielded-expedition.b40d8e9055"
+base_dir = ""
 storage_read_past_height_limit = 3600
 db_dir = "db"
 cometbft_dir = "cometbft"
