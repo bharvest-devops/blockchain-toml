@@ -7,14 +7,14 @@ type NamadaConfigFile struct {
 
 type NamadaLedger struct {
 	GenesisTime    *string              `json:"genesisTime" toml:"genesis_time"`
-	ChainID        *string              `json:"chainID" toml:"chain_id"`
+	ChainID        string               `json:"chainID" toml:"chain_id"`
 	Shell          NamadaShell          `json:"shell" toml:"shell"`
 	Cometbft       NamadaCometbft       `json:"cometbft" toml:"cometbft"`
 	EthereumBridge NamadaEthereumBridge `json:"ethereumBridge" toml:"ethereum_bridge"`
 }
 
 type NamadaShell struct {
-	BaseDir                    *string `json:"baseDir" toml:"base_dir"`
+	BaseDir                    string  `json:"baseDir" toml:"base_dir"`
 	StorageReadPastHeightLimit *uint64 `json:"storageReadPastHeightLimit" toml:"storage_read_past_height_limit"`
 	DbDir                      *string `json:"dbDir" toml:"db_dir"`
 	CometbftDir                *string `json:"cometbftDir" toml:"cometbft_dir"`
