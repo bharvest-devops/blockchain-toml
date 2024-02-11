@@ -7,6 +7,7 @@ import (
 func TestCosmos(t *testing.T) {
 	t.Run("cosmos config merge test", testCosmosConfigMerge)
 	t.Run("cosmos config export merge test", testCosmosConfigExportMerge)
+	t.Run("cosmos config export merge with tomlOverrides", testExportMergeWithTomlOverrides)
 
 	t.Run("cosmos app merge test", testCosmosAppMerge)
 	t.Run("cosmos app export merge test", testCosmosAppExportMerge)
@@ -36,6 +37,21 @@ func testCosmosConfigExportMerge(t *testing.T) {
 	config.BoolBlockSync = &boolBlockSync
 
 	bytes, err := config.ExportMergeWithDefault()
+	if err != nil {
+		t.Fatalf("%s", err.Error())
+	}
+
+	t.Logf("\n%s", string(bytes))
+
+}
+
+func testExportMergeWithTomlOverrides(t *testing.T) {
+	var config = getDefaultCosmosConfigFile()
+
+	bytes, err := config.ExportMergeWithTomlOverrides([]byte(`
+[rpc]
+laddr = "tpc://3.3.3.3:3333"
+`))
 	if err != nil {
 		t.Fatalf("%s", err.Error())
 	}

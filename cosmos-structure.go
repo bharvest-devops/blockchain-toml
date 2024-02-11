@@ -166,13 +166,13 @@ type CosmosAppFile struct {
 }
 
 type Telemetry struct {
-	ServiceName             *string        `json:"serviceName" toml:"service-name"`
-	Enabled                 *bool          `json:"enabled" toml:"enabled"`
-	EnableHostname          *bool          `json:"enableHostname" toml:"enable-hostname"`
-	EnableHostnameLabel     *bool          `json:"enableHostnameLabel" toml:"enable-hostname-label"`
-	EnableServiceLabel      *bool          `json:"enableServiceLabel" toml:"enable-service-label"`
-	PrometheusRetentionTime *int           `json:"prometheusRetentionTime" toml:"prometheus-retention-time"`
-	GlobalLabels            []*interface{} `json:"globalLabels" toml:"global-labels"`
+	ServiceName             *string     `json:"serviceName" toml:"service-name"`
+	Enabled                 *bool       `json:"enabled" toml:"enabled"`
+	EnableHostname          *bool       `json:"enableHostname" toml:"enable-hostname"`
+	EnableHostnameLabel     *bool       `json:"enableHostnameLabel" toml:"enable-hostname-label"`
+	EnableServiceLabel      *bool       `json:"enableServiceLabel" toml:"enable-service-label"`
+	PrometheusRetentionTime *int        `json:"prometheusRetentionTime" toml:"prometheus-retention-time"`
+	GlobalLabels            *[][]string `json:"globalLabels" toml:"global-labels"`
 }
 
 type API struct {
