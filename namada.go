@@ -21,7 +21,7 @@ func getDefaultNamadaConfigFile() *NamadaConfigFile {
 }
 
 func (c *NamadaConfigFile) MergeWithDefault() error {
-	if err := mergo.Merge(c, *getDefaultNamadaConfigFile(), mergo.WithoutDereference); err != nil {
+	if err := mergo.Merge(c, *getDefaultNamadaConfigFile()); err != nil {
 		return printError(err)
 	}
 	return nil
@@ -40,7 +40,7 @@ func (c *NamadaConfigFile) ExportMergeWithDefault() ([]byte, error) {
 }
 
 func (c *NamadaConfigFile) MergeWithConfig(o *NamadaConfigFile) error {
-	if err := mergo.Merge(c, o, mergo.WithoutDereference); err != nil {
+	if err := mergo.Merge(c, o); err != nil {
 		return printError(err)
 	}
 	return nil
@@ -72,7 +72,7 @@ func (c *NamadaConfigFile) ExportMergeWithTomlOverrides(overrides []byte) ([]byt
 	if err != nil {
 		return nil, printError(err)
 	}
-	if err = mergo.Merge(&originMap, overridesMap, mergo.WithoutDereference, mergo.WithOverride); err != nil {
+	if err = mergo.Merge(&originMap, overridesMap); err != nil {
 		return nil, printError(err)
 	}
 	resp, err := toml.Marshal(originMap)

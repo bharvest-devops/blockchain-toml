@@ -32,7 +32,12 @@ func testCosmosConfigMerge(t *testing.T) {
 }
 
 func testCosmosConfigExportMerge(t *testing.T) {
-	var config CosmosConfigFile
+	str := "dddd"
+	config := CosmosConfigFile{
+		RPC: CosmosRPC{
+			Laddr: &str,
+		},
+	}
 	boolBlockSync := false
 	config.BoolBlockSync = &boolBlockSync
 
@@ -40,7 +45,6 @@ func testCosmosConfigExportMerge(t *testing.T) {
 	if err != nil {
 		t.Fatalf("%s", err.Error())
 	}
-
 	t.Logf("\n%s", string(bytes))
 
 }
