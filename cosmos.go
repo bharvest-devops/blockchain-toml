@@ -3,7 +3,7 @@ package blockchain_toml
 import (
 	"dario.cat/mergo"
 	_ "embed"
-	"github.com/pelletier/go-toml"
+	"github.com/pelletier/go-toml/v2"
 )
 
 var (
